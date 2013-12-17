@@ -15,7 +15,3 @@ Contact Form 7で作ったフォームからChatWorkの指定されたチャッ�
 --------
 1. [Contact Form 7](http://wordpress.org/plugins/contact-form-7/ "Contact Form 7")
 2. [ChatWork APIトークンの取得方法](http://developer.chatwork.com/ja/authenticate.html "ChatWork APIトークンの取得方法")
-
-ライセンス
-----------
-[MIT]: http://www.opensource.org/licenses/mit-license.php
