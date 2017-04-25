@@ -30,7 +30,7 @@ function impath_send_cw_message( $cf7 ){
     $body = "[info][title]".$mail_subject."[/title]".$mail_body."[/info]";
     $roomid = get_option('impath_cw_roomid');
     $key = get_option('impath_cw_api_token');
-    $url = 'https://api.chatwork.com/v1/rooms/'.$roomid.'/messages';
+    $url = 'https://api.chatwork.com/v2/rooms/'.$roomid.'/messages';
     $data = array(
         'body' => $body
     );
