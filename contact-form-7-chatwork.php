@@ -4,7 +4,7 @@ Plugin Name: Contact Form 7 with ChatWork
 Plugin URI: 
 Description: ChatWork にフォームの内容を送信します。
 Author: IMPATH Inc.
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://impath.co.jp
 */
 
