@@ -1,6 +1,11 @@
 === Contact Form 7 with ChatWork ===
-
+Contributors: izuchy
 Tags: Chatwork,チャットワーク,ContactForm7,ContactForm
+Stable tag: 1.1.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+ChatWork に Contact Form 7 のフォーム送信内容を自動で通知するプラグインです。
 
 == Description ==
 = Contact Form 7 with ChatWork =

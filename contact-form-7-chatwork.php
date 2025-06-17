@@ -37,6 +37,7 @@ function impath_send_cw_message( $cf7 ){
         ),
         'body' => array(
             'body' => $body,
+            'self_unread' => 1, // 0:未読にしない, 1:未読にする
         ),
     ));
 
