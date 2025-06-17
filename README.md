@@ -14,7 +14,7 @@ WordPressのPluginの新規追加画面で 「Contact Form 7 with ChatWork」 �
 
 更新履歴
 --------
-2025/06/17 APIリクエストの仕様変更に対応しました
+2025/06/17 APIリクエストの仕様変更に対応しました  
 2017/04/25 ChatWorkのAPIバージョン2に対応しました  
 2014/10/10 Contact Form 7 ver 3.9.Xに対応しました  
 2013/12/17 初版公開
