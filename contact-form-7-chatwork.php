@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Contact Form 7 with ChatWork
-Plugin URI: 
+Plugin URI:
 Description: ChatWork にフォームの内容を送信します。
 Author: IMPATH Inc.
-Version: 1.0.2
-Author URI: http://impath.co.jp
+Version: 1.1.0
+Author URI: https://impath.co.jp
 */
 
 add_action( 'wpcf7_mail_sent', 'impath_send_cw_message');
@@ -13,7 +13,6 @@ function impath_send_cw_message( $cf7 ){
 
     if(!get_option('impath_cw_api_token') || !get_option('impath_cw_roomid'))return;
 
-    // Contact Form 7 > 3.9
     if(!method_exists($cf7, 'replace_mail_tags')) {
         $mail_properties = $cf7->get_properties();
         $mail = $mail_properties['mail'];
@@ -31,19 +30,28 @@ function impath_send_cw_message( $cf7 ){
     $roomid = get_option('impath_cw_roomid');
     $key = get_option('impath_cw_api_token');
     $url = 'https://api.chatwork.com/v2/rooms/'.$roomid.'/messages';
-    $data = array(
-        'body' => $body
-    );
-    $headers = array(
-        'X-ChatWorkToken: '.$key
-    );
-    $options = array('http' => array(
-        'method' => 'POST',
-        'content' => http_build_query($data),
-        'header' => implode("\r\n", $headers),
+    $response = wp_remote_post($url, array(
+        'headers' => array(
+            'X-ChatWorkToken' => $key,
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ),
+        'body' => array(
+            'body' => $body,
+        ),
     ));
-    $contents = file_get_contents($url, false, stream_context_create($options));
 
+    if (is_wp_error($response)) {
+        error_log('[ChatWork API] リクエスト失敗: ' . $response->get_error_message());
+    } else {
+        $status_code = wp_remote_retrieve_response_code($response);
+        $response_body = wp_remote_retrieve_body($response);
+
+        if ($status_code === 200 || $status_code === 201) {
+            error_log('[ChatWork API] メッセージ送信成功: ステータスコード ' . $status_code . ', レスポンス: ' . $response_body);
+        } else {
+            error_log('[ChatWork API] メッセージ送信失敗: ステータスコード ' . $status_code . ', レスポンス: ' . $response_body);
+        }
+    }
 }
 
 add_action('admin_menu', 'impath_cf7cw_admin_menu');
